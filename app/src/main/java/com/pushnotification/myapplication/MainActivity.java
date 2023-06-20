@@ -47,8 +47,7 @@ public class MainActivity extends AppCompatActivity {
     private void receivedetails(){
 
         JSONArray object = new JSONArray();
-
-
+        //called volley parameter
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(Request.Method.GET,
                 "https://lollypopy.in/iplustv_app/api/v1//tv/dashboard", null,
 
@@ -65,11 +64,11 @@ public class MainActivity extends AppCompatActivity {
                                 String title = obj.getString("title");
                                 JSONArray list = obj.optJSONArray("list");
                                 Log.e("TAG", "onResponse: "+title );
+
                                 List<Imagelist> imagelists = new ArrayList<>();
                                 for (int j=0;j<list.length();j++){
                                    JSONObject listobj= list.getJSONObject(j);
                                    String listtitle=listobj.optString("title","NA");
-                                 //  String listimage=listobj.optString("image","https://images.unsplash.com/photo-1559583985-c80d8ad9b29f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8MXwxMDY1OTc2fHxlbnwwfHx8fHw%3D&w=1000&q=80");
                                    String listimage=listobj.optString("image","https://images.unsplash.com/photo-1559583985-c80d8ad9b29f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxjb2xsZWN0aW9uLXBhZ2V8MXwxMDY1OTc2fHxlbnwwfHx8fHw%3D&w=1000&q=80");
                                    Imagelist image= new Imagelist(listtitle,listimage);
                                    imagelists.add(image);
@@ -85,50 +84,10 @@ public class MainActivity extends AppCompatActivity {
                         } catch (JSONException e) {
                             throw new RuntimeException(e);
                         }
-/*
-                        try {
-                            data = response.getJSONObject(data);
-                          //  String id = data.getString("id");
-                            String title = data.getString("title");
-                            String image = data.getString("image");
-
-                            list.add(new Imagelist(title,image));
-                            adpter.notifyDataSetChanged();
-
-
-                        } catch (JSONException e) {
-                            throw new RuntimeException(e);
-                        }
-*/
-
 
                     }
 
-                 /*   @Override
-                    public void onResponse(JsonObject response) {
-                        Log.e("TAG", "onResponse: "+response );
-                        try {
-                            JSONObject data= response.getJSONObject(response.toString());
-                            String id = data.getString("id");
-                            String title = data.getString("title");
-                            String image = data.getString("image");
 
-                          *//*  username.setText(author);
-
-                            Glide.with(MainActivity.this).load(download_url).into(image);
-*//*
-                            list.add(new Imagelist(title,image));
-
-
-
-                        } catch (JSONException e) {
-                            throw new RuntimeException(e);
-
-
-                        }*/
-
-
-                  //  }
                 },
                 new Response.ErrorListener() {
                     @Override
